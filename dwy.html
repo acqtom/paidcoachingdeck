@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>paidcoaching.com · DWY</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/contents.css">
+<style>
+/* Same brand tokens as the DFY deck (index.html) */
+:root {
+  --bg: #FBF8F2;
+  --surface: #FFFFFF;
+  --ink: #0E0F12;
+  --muted: #5D606B;
+  --faint: #9A9CA3;
+  --line: #E6E1D6;
+  --blue: #0B4FE3;
+  --blue-soft: #E9EFFD;
+  --f-display: "Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --header-h: 64px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100svh; display: flex; flex-direction: column;
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(14, 15, 18, 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--ink); font: 400 16px/1.55 var(--f-body); -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+.topbar {
+  position: sticky; top: 0; z-index: 20; height: var(--header-h);
+  display: flex; align-items: center; padding-inline: max(16px, 4vw);
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.logo img { height: 28px; width: auto; display: block; }
+.slide { flex: 1; display: grid; place-items: center; text-align: center; padding: 64px max(16px, 5vw) 120px; }
+.eyebrow { font: 600 12px/1 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 22px; }
+h1 { margin: 0; font: 900 clamp(56px, 11vw, 168px)/0.92 var(--f-display); letter-spacing: -0.045em; text-wrap: balance; }
+h1 span { color: var(--blue); }
+.sub { margin: 26px auto 0; max-width: 44ch; color: var(--muted); font-size: clamp(17px, 1.5vw, 20px); }
+.toc-btn { right: 18px; }
+</style>
+</head>
+<body data-deck="dwy">
+
+<header class="topbar">
+  <a class="logo" href="index.html" aria-label="Paidcoaching.com"><img src="assets/logo.png" alt="Paidcoaching.com"></a>
+</header>
+
+<main class="slide" id="coming-soon" data-title="Coming soon">
+  <div>
+    <div class="eyebrow">Done with you</div>
+    <h1>COMING <span>SOON</span></h1>
+    <p class="sub">The DWY deck is on its way. Switch back to DFY from Contents.</p>
+  </div>
+</main>
+
+<script src="assets/contents.js"></script>
+</body>
+</html>
