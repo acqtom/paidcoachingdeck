@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>paidcoaching.com</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one full-screen "slide" per section, scrolled like a call deck. Paidcoaching.com brand: cream paper, black display, royal blue. */
+:root {
+  --bg: #FBF8F2;
+  --surface: #FFFFFF;
+  --ink: #0E0F12;
+  --muted: #5D606B;
+  --faint: #9A9CA3;
+  --line: #E6E1D6;
+  --blue: #0B4FE3;
+  --blue-deep: #0838B4;
+  --blue-soft: #E9EFFD;
+  --blue-pale: #BFD0F8;
+
+  --f-display: "Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --header-h: 64px;
+  --radius: 14px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(14, 15, 18, 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font: 400 16px/1.55 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Header ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding-inline: max(16px, 4vw);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.logo { display: flex; align-items: center; gap: 8px; font: 800 20px/1 var(--f-display); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.logo img { height: 28px; width: auto; }
+
+/* ---------- Slides ---------- */
+.slide {
+  scroll-margin-top: var(--header-h);
+  padding: clamp(48px, 7vw, 96px) max(16px, 5vw);
+  display: flex; flex-direction: column; justify-content: center;
+}
+@media (min-width: 900px) { .slide { min-height: calc(100svh - var(--header-h)); } }
+.slide + .slide { border-top: 1px solid var(--line); }
+.wrap { width: 100%; max-width: 1240px; margin-inline: auto; }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font: 600 12px/1 var(--f-mono); letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+.eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--blue); }
+
+.h-xl { font-size: clamp(40px, 6.6vw, 92px); font-weight: 800; line-height: 0.98; letter-spacing: -0.035em; }
+.h-lg { font-size: clamp(34px, 5vw, 68px); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; }
+.h-md { font-size: clamp(28px, 3.6vw, 48px); font-weight: 800; line-height: 1.08; letter-spacing: -0.025em; }
+.lede { font-size: clamp(17px, 1.5vw, 20px); color: var(--muted); max-width: 60ch; margin-top: 18px; }
+.blue { color: var(--blue); }
+.mark { background: var(--blue); color: #fff; padding: 0 0.18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* Check-circle list (straight from the site) */
+.checks { display: flex; flex-wrap: wrap; gap: 14px 28px; list-style: none; padding: 0; margin: 28px 0 0; }
+.checks li { display: flex; align-items: center; gap: 10px; font-size: 17px; color: #2A2C33; }
+.tick {
+  flex: none; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--blue); display: grid; place-items: center;
+}
+.tick svg { width: 12px; height: 12px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ---------- 1. Hero ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+.badge {
+  display: inline-block; background: var(--blue); color: #fff;
+  font: 700 15px/1 var(--f-body); padding: 12px 16px; border-radius: 4px; margin-bottom: 26px;
+}
+.hero h1 { font-size: clamp(36px, 4.6vw, 66px); font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; }
+.photo-frame {
+  border: 2px solid var(--ink); border-radius: 18px; padding: 10px; background: var(--surface);
+  box-shadow: 0 30px 60px -30px rgba(14, 15, 18, 0.35);
+  width: 100%;
+}
+.photos { display: grid; align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: 100%; max-width: 620px; justify-self: center; }
+.photos .photo-frame:nth-child(2) { margin-top: 48px; }
+.founder-img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+.slot {
+  aspect-ratio: 4 / 5; width: 100%; border-radius: 10px;
+  background: repeating-linear-gradient(135deg, #F1EEE7 0 12px, #ECE8DF 12px 24px);
+  display: grid; place-items: center; text-align: center;
+  color: var(--faint); font: 500 13px/1.4 var(--f-mono); letter-spacing: 0.04em;
+  padding: 20px;
+}
+.slot strong { display: block; color: var(--muted); font-family: var(--f-body); font-size: 15px; letter-spacing: 0; margin-bottom: 4px; }
+
+/* ---------- 2. Mission ---------- */
+.target {
+  margin-top: 36px; max-width: 680px;
+  background: var(--blue); color: #fff; border-radius: var(--radius);
+  padding: 28px 30px;
+  box-shadow: 0 24px 50px -24px rgba(11, 79, 227, 0.6);
+}
+.target .label { font: 600 11px/1 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
+.target .big { font: 800 clamp(40px, 5vw, 64px)/1 var(--f-display); letter-spacing: -0.03em; margin: 12px 0 8px; }
+.target .sub { font-weight: 600; font-size: 17px; }
+.mission-row { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; margin-top: 36px; }
+.mission-row .target { margin-top: 0; max-width: none; }
+@media (max-width: 900px) { .mission-row { grid-template-columns: 1fr; } }
+.mission-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+.mission-list li { display: flex; align-items: center; gap: 14px; font: 700 clamp(18px, 1.6vw, 22px)/1.3 var(--f-display); letter-spacing: -0.01em; }
+.mission-list .tick { width: 28px; height: 28px; }
+.mission-list .tick svg { width: 14px; height: 14px; }
+.after { margin-top: 22px; color: var(--muted); font-size: 17px; }
+
+/* ---------- 3. Proof carousel ---------- */
+.proof-head { font-size: clamp(30px, 4vw, 52px); font-weight: 800; line-height: 1.18; letter-spacing: -0.025em; max-width: 26ch; }
+.proof-head .soft { color: var(--faint); }
+.proof { scroll-snap-align: start; overflow: hidden; display: flex; flex-direction: column; }
+.proof .slot { aspect-ratio: 4 / 3; border-radius: 0; }
+.proof .cap { padding: 14px 16px 16px; border-top: 1px solid var(--line); }
+.proof .who { font-weight: 700; font-size: 15px; }
+.proof .what { font-size: 14px; color: var(--muted); }
+
+/* ---------- Case study blocks ---------- */
+.cs-stack { display: grid; gap: 24px; margin-top: 40px; }
+.cs {
+  background: #F4EFDF; border: 1px solid #DDD5C1; border-radius: 22px;
+  padding: clamp(24px, 3.5vw, 40px) clamp(16px, 3.5vw, 40px);
+  display: flex; flex-direction: column; align-items: center; gap: 22px;
+  max-width: 1040px; margin-inline: auto; width: 100%;
+}
+.cs-title {
+  font: 800 clamp(17px, 1.6vw, 20px)/1.2 var(--f-display); letter-spacing: -0.01em; color: var(--blue);
+  background: var(--surface); border: 1.5px solid var(--blue); border-radius: 999px; padding: 13px 24px; text-align: center;
+}
+.cs-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: -8px; }
+.cs-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600; }
+.cs-panes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; }
+@media (max-width: 700px) { .cs-panes { grid-template-columns: 1fr; } }
+.cs-pane { position: relative; border: 1px solid #D8D6D0; border-radius: 12px; overflow: hidden; background: linear-gradient(160deg, #EBEEF0, #FFFFFF); }
+.cs-label { position: absolute; top: 12px; left: 12px; z-index: 1; background: var(--ink); color: #fff; font: 700 11px/1 var(--f-body); letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 10px; border-radius: 999px; }
+.cs-label.paid { background: var(--blue); }
+.cs-pane img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.cs-shot { aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 40px 20px 20px; color: var(--muted); font-size: 14px; text-align: center; }
+.cs-stats { display: flex; gap: 10px; }
+.cs-stats div { background: var(--surface); border-radius: 6px; box-shadow: 0 6px 20px -6px rgba(14, 15, 18, 0.25); width: clamp(110px, 16vw, 176px); display: flex; flex-direction: column; }
+.cs-stats span { padding: 14px 18px; border-bottom: 1px solid var(--line); color: #2E3440; font-weight: 500; }
+.cs-stats b { flex: 1; display: grid; place-items: center; padding: 26px 10px; font-size: clamp(20px, 2vw, 26px); font-weight: 500; color: #2E3440; font-variant-numeric: tabular-nums; }
+.cs-stats b.huge { font-size: clamp(44px, 5vw, 70px); font-weight: 400; padding-block: 10px; }
+.cs-story { max-width: 62ch; text-align: center; color: #3A3C42; font-size: 17px; line-height: 1.65; }
+.cs-eq { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
+.cs-n { min-width: 140px; border-radius: 9px; padding: 13px 18px; text-align: center; display: flex; flex-direction: column; gap: 2px; }
+.cs-n b { font: 800 22px/1.15 var(--f-display); font-variant-numeric: tabular-nums; }
+.cs-n span { font-size: 13px; }
+.cs-n.dark { background: var(--ink); color: #fff; }
+.cs-n.dark span { color: rgba(255, 255, 255, 0.75); }
+.cs-n.out { background: var(--surface); border: 1.5px solid var(--blue); padding-block: 18px; }
+.cs-n.out b { color: var(--blue); font-size: 28px; }
+.cs-n.out span { color: var(--muted); }
+.cs-n.win { background: var(--blue); color: #fff; padding-block: 20px; box-shadow: 0 16px 30px -12px rgba(11, 79, 227, 0.55); }
+.cs-n.win b { font-size: 28px; }
+.cs-n.win span { color: rgba(255, 255, 255, 0.82); }
+.cs-op { font-weight: 700; font-size: 20px; color: var(--muted); }
+.cs-op.arrow { color: var(--blue); font-size: 26px; margin-inline: 4px; }
+@media (max-width: 600px) { .cs-n { min-width: 0; flex: 1 1 40%; } .cs-op.arrow { flex-basis: 100%; text-align: center; transform: rotate(90deg); } }
+/* Side by side: the proof slide runs wider so each block keeps near full-size type */
+#proof .wrap { max-width: 1640px; }
+.cs-intro { font-size: clamp(17px, 1.5vw, 20px); color: var(--muted); margin-top: 14px; }
+.cs-intro strong { color: var(--ink); }
+@media (min-width: 1000px) {
+  .cs-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 28px; }
+  .cs-stack .cs { max-width: none; padding: clamp(28px, 2.4vw, 40px) clamp(20px, 2vw, 34px); }
+  .cs-stack .cs-title { font-size: clamp(17px, 1.3vw, 20px); }
+  .cs-stack .cs-stats div { width: clamp(110px, 10vw, 170px); }
+  .cs-stack .cs-stats b.huge { font-size: clamp(44px, 4vw, 66px); }
+  .cs-stack .cs-story { font-size: clamp(15px, 1.15vw, 17px); flex: 1; }
+  .cs-stack .cs-eq { gap: 10px; flex-wrap: nowrap; width: 100%; }
+  .cs-stack .cs-n { min-width: 0; flex: 1 1 0; padding: 13px 10px; }
+  .cs-stack .cs-n b { font-size: clamp(18px, 1.5vw, 22px); }
+  .cs-stack .cs-n.out b, .cs-stack .cs-n.win b { font-size: clamp(22px, 1.9vw, 28px); }
+  .cs-stack .cs-n span { font-size: clamp(11.5px, 0.9vw, 13px); }
+  .cs-stack .cs-op.arrow { margin-inline: 0; }
+}
+
+/* ---------- 30-day ROAS chart ---------- */
+#milestones .wrap, #enrol .wrap { max-width: 1480px; }
+#milestones h2 { max-width: 20ch; }
+.roas-card {
+  margin-top: 32px; background: #F4EFDF; border: 1px solid #DDD5C1; border-radius: 22px;
+  padding: clamp(20px, 3vw, 44px) clamp(12px, 3vw, 48px) clamp(16px, 2vw, 28px);
+}
+.roas-card .chart-scroll svg { min-width: 760px; }
+@media (min-width: 900px) { .roas-card .chart-scroll svg { max-height: max(440px, calc(100svh - 400px)); } }
+.roas-card .chart-note { color: var(--muted); font-size: 13px; margin-top: 14px; }
+.r-grid { stroke: #DDD6C4; stroke-width: 1.2; }
+.r-base { stroke: #B9B2A1; stroke-width: 1.5; }
+.r-tick { fill: #6B6A64; font: 500 18px var(--f-body); }
+.r-axis { fill: #6B6A64; font: 700 15px var(--f-body); letter-spacing: 0.12em; }
+.r-drop { stroke: #9FB3E6; stroke-width: 2; stroke-dasharray: 3 6; }
+.r-dot { fill: var(--blue); stroke: #fff; stroke-width: 4; }
+.r-halo { fill: var(--blue); opacity: 0.18; }
+.r-week { fill: var(--blue); font: 800 17px var(--f-body); letter-spacing: 0.1em; }
+.r-title { fill: var(--ink); font: 700 21px var(--f-body); letter-spacing: -0.01em; }
+
+.r-band { fill: #fff; opacity: 0.55; }
+.phase-right { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.dfy { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.dfy-cols { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 24px; padding: 22px 24px; }
+@media (max-width: 700px) { .dfy-cols { grid-template-columns: 1fr; } }
+.dfy h3 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 12px; }
+.dfy .bul { gap: 6px; }
+.dfy .bul li { font-size: 15px; }
+.dfy-two { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
+@media (max-width: 500px) { .dfy-two { grid-template-columns: 1fr; } }
+.dfy-own { background: var(--blue); color: rgba(255, 255, 255, 0.9); padding: 14px 24px; font-size: 15px; }
+.dfy-own strong { color: #fff; font-weight: 800; }
+.phase-chart { margin-top: 0; }
+.phase-chart .chart-scroll svg { min-width: 0; }
+[id^="phase-"] .wrap { max-width: 1520px; }
+[id^="phase-"] h2 { font-size: clamp(34px, 3.6vw, 56px); }
+.phase-chart { padding: clamp(14px, 1.6vw, 24px) clamp(8px, 1.4vw, 20px) 8px; }
+.phase-chart .r-title { font-size: 21px; }
+.phase-chart .r-week { font-size: 19px; }
+.phase-chart .r-tick { font-size: 21px; }
+.phase-chart .r-axis { font-size: 17px; }
+/* ---------- Chart ---------- */
+.chart-card { padding: clamp(16px, 2vw, 28px); box-shadow: 0 30px 60px -40px rgba(14, 15, 18, 0.3); }
+.chart-scroll { overflow-x: auto; }
+.chart-scroll svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.axis-title { font: 600 12px/1 var(--f-mono); letter-spacing: 0.16em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+.chart-note { text-align: center; color: var(--faint); font-size: 12px; margin-top: 10px; }
+.c-grid { stroke: var(--line); stroke-width: 1; }
+.c-tick { fill: var(--faint); font: 500 15px var(--f-body); }
+.c-line { fill: none; stroke: var(--blue); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.c-line.ghost { stroke: var(--blue-pale); stroke-width: 4; }
+.c-lead { stroke: var(--blue); stroke-width: 1.5; stroke-dasharray: 4 5; }
+.c-dot { fill: var(--surface); stroke: var(--blue); stroke-width: 4; }
+.c-box { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
+.c-tag { fill: var(--blue); font: 600 12px var(--f-mono); letter-spacing: 0.16em; }
+.c-title { fill: var(--ink); font: 800 21px var(--f-display); letter-spacing: -0.02em; }
+.c-band { fill: var(--blue-soft); }
+.dim { opacity: 0.3; }
+.draw .c-line:not(.ghost) { stroke-dasharray: 2000; animation: draw 1.6s cubic-bezier(.6,0,.2,1) both; }
+@keyframes draw { from { stroke-dashoffset: 2000; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .draw .c-line:not(.ghost) { animation: none; } html { scroll-behavior: auto; } }
+
+.milestones-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+
+/* ---------- Phases ---------- */
+.phase { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+@media (max-width: 1000px) { .phase { grid-template-columns: 1fr; } }
+.step { margin-top: 26px; }
+.step-label { font: 600 12px/1 var(--f-mono); letter-spacing: 0.18em; color: var(--blue); text-transform: uppercase; margin-bottom: 10px; }
+.bul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.bul li { position: relative; padding-left: 20px; color: var(--muted); font-size: 17px; }
+.bul li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+.bul li.key { color: var(--ink); font-weight: 600; }
+.proof-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 30px; max-width: 560px; }
+.proof-row .proof .slot { aspect-ratio: 4 / 3; }
+
+/* ---------- Who this is for ---------- */
+.fit { display: grid; grid-template-columns: minmax(0, 2fr) auto minmax(0, 1fr); gap: 24px; align-items: stretch; margin-top: 40px; }
+.fit-label { font: 600 13px/1.3 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.fit-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fit-from, .fit-to { display: flex; flex-direction: column; min-width: 0; }
+.fit-pair, .fit-to .fit-box { flex: 1; }
+.fit-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; height: 100%; }
+.fit-tag { align-self: flex-start; font: 600 11px/1 var(--f-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); background: var(--blue-soft); padding: 7px 10px; border-radius: 999px; }
+.fit-box h3 { font-size: clamp(20px, 1.7vw, 24px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; }
+.fit-box .bul li { font-size: 16px; }
+.fit-box.win { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 0 24px 50px -24px rgba(11, 79, 227, 0.6); }
+.fit-box.win .fit-tag { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.fit-box.win .bul li { color: rgba(255, 255, 255, 0.92); }
+.fit-box.win .bul li::before { background: #fff; }
+.fit-arrow { align-self: center; margin-top: 28px; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.fit-arrow svg { width: 26px; height: 26px; }
+@media (max-width: 1000px) {
+  .fit { grid-template-columns: 1fr; }
+  .fit-arrow { justify-self: center; margin-top: 0; transform: rotate(90deg); }
+}
+@media (max-width: 640px) { .fit-pair { grid-template-columns: 1fr; } }
+
+/* ---------- Guarantee ---------- */
+.gtee { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+@media (max-width: 1000px) { .gtee { grid-template-columns: 1fr; } }
+.gtee .lede { font-size: clamp(18px, 1.6vw, 22px); margin-top: 24px; }
+.gtee-card { background: var(--blue); color: #fff; border-radius: 22px; padding: clamp(28px, 3.5vw, 48px); box-shadow: 0 30px 60px -28px rgba(11, 79, 227, 0.65); }
+.gtee-seal { width: 60px; height: 60px; border-radius: 16px; background: rgba(255, 255, 255, 0.14); display: grid; place-items: center; margin-bottom: 22px; }
+.gtee-seal svg { width: 32px; height: 32px; }
+.gtee-tag { font: 600 12px/1 var(--f-mono); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.85; margin-bottom: 14px; }
+.gtee-text { font: 600 clamp(20px, 1.9vw, 26px)/1.4 var(--f-body); letter-spacing: -0.01em; }
+.gtee-text strong { font-weight: 800; background: rgba(255, 255, 255, 0.16); padding: 0 0.2em; border-radius: 4px; }
+.gtee-fair { font: 800 clamp(40px, 4.5vw, 64px)/1 var(--f-display); letter-spacing: -0.03em; margin-top: 28px; }
+
+/* ---------- Pricing ---------- */
+.price-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 24px; align-items: start; }
+
+@media (max-width: 700px) { .price-grid { grid-template-columns: 1fr; } }
+.plan { overflow: hidden; }
+.plan .top { padding: 26px 28px; }
+.plan .was { font: 800 clamp(40px, 4vw, 56px)/1 var(--f-display); letter-spacing: -0.03em; color: var(--faint); text-decoration: line-through; text-decoration-thickness: 3px; }
+.plan .small { color: var(--muted); font-size: 15px; }
+.plan.best { border: 2px solid var(--blue); box-shadow: 0 30px 60px -30px rgba(11, 79, 227, 0.5); }
+.plan.best .top { background: var(--blue); color: #fff; }
+.plan.best .small { color: rgba(255, 255, 255, 0.82); }
+.pill { display: inline-block; background: var(--ink); color: #fff; font: 600 11px/1 var(--f-mono); letter-spacing: 0.18em; padding: 8px 10px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+.opt { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; padding-block: 14px; }
+.opt + .opt { border-top: 1px solid rgba(255, 255, 255, 0.28); }
+.opt .amt { font: 800 clamp(36px, 3.6vw, 52px)/1 var(--f-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.rows { list-style: none; padding: 0; margin: 0; }
+.rows li { display: flex; justify-content: space-between; gap: 16px; padding: 15px 28px; border-top: 1px solid var(--line); font-size: 15px; }
+.rows li span:last-child { flex: none; display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.rows .yes { color: var(--blue); font-weight: 600; }
+.rows .no { color: var(--faint); }
+
+/* ---------- Close ---------- */
+.close-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; margin-bottom: 26px; }
+.close-price { display: flex; align-items: baseline; gap: 10px; }
+.close-price b { font: 800 clamp(48px, 6vw, 84px)/1 var(--f-display); letter-spacing: -0.035em; color: var(--blue); }
+.close-price span { color: var(--muted); }
+
+/* ---------- Slide nav ---------- */
+.dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 15; }
+.dots a { width: 8px; height: 8px; border-radius: 50%; background: var(--line); border: 1px solid #D3CDBF; }
+.dots a.on { background: var(--blue); border-color: var(--blue); height: 22px; border-radius: 6px; }
+@media (max-width: 900px) { .dots { display: none; } }
+.pager { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 15; display: flex; flex-direction: column; gap: 8px; }
+.pager button {
+  width: 46px; height: 46px; border-radius: 10px; cursor: pointer;
+  display: grid; place-items: center;
+  background: var(--blue); color: #fff; border: 0;
+  box-shadow: 0 10px 24px -10px rgba(11, 79, 227, 0.7);
+  transition: background 0.15s, opacity 0.15s;
+}
+.pager button:hover { background: var(--blue-deep); }
+.pager button:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
+.pager svg { width: 22px; height: 22px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#hero" aria-label="Paidcoaching.com"><img src="assets/logo.png" alt="Paidcoaching.com"></a>
+</header>
+
+<nav class="dots" aria-label="Slides"></nav>
+<div class="pager">
+  <button type="button" id="pageUp" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+  <button type="button" id="pageDown" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+</div>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="slide" id="hero" data-title="Intro">
+  <div class="wrap hero">
+    <div>
+      <span class="badge">Organic Coaches Sick And Tired Of Inconsistency</span>
+      <h1>We Will Translate Your Organic Offer To Paid By Building You A Funnel That Gets <span class="blue">5x ROAS In 30 Days</span></h1>
+      <ul class="checks">
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>20x Ads Scripted</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom Funnel Build</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email Sequences</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>VSL Script</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Offer Adapted To PIF Cold Traffic</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1-on-1 Coaching</li>
+      </ul>
+    </div>
+    <div class="photos">
+      <div class="photo-frame">
+        <img class="founder-img" src="assets/founder.jpg" alt="Tom on a balcony above Dubai Marina" style="object-position: 34% 50%">
+      </div>
+      <div class="photo-frame">
+        <!-- Replace with: <img src="assets/founder-2.jpg" alt="Tom" style="border-radius:10px;aspect-ratio:4/5;object-fit:cover"> -->
+        <div class="slot"><div><strong>Founder photo 2</strong>assets/founder-2.jpg · 4:5</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. MISSION -->
+<section class="slide" id="mission" data-title="Mission">
+  <div class="wrap">
+    <div class="eyebrow">The mission</div>
+    <h2 class="h-xl">Over the next 30 days, we're working toward one thing.</h2>
+    <div class="mission-row">
+      <div>
+        <div class="target">
+          <div class="label">The target</div>
+          <div class="big">5x ROAS on cold traffic</div>
+          <div class="sub">Paid-in-full sales from a funnel that runs without you posting</div>
+        </div>
+        <p class="after">You booking calls daily, whether or not you're posting.</p>
+      </div>
+      <ul class="mission-list">
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Consistent lead flow in your control</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Qualified calls</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Highly educated, committed, and ready to buy</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High show rates</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>$1 in, $5 out</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3. WHO THIS IS FOR -->
+<section class="slide" id="built-for" data-title="Who this is for">
+  <div class="wrap">
+    <div class="eyebrow">Before we go further</div>
+    <h2 class="h-xl">Who this is for</h2>
+    <div class="fit">
+      <div class="fit-from">
+        <p class="fit-label">People we work with are typically in two scenarios</p>
+        <div class="fit-pair">
+          <div class="fit-box">
+            <span class="fit-tag">Scenario 1</span>
+            <h3>Selling well on organic, but it's inconsistent, and you can't scale</h3>
+            <ul class="bul">
+              <li>Clients come through content and DMs</li>
+              <li>Revenue rises and falls with how often you slave away to the algorithm</li>
+              <li>Paid ads is uncharted territory and it seems overwhelming</li>
+              <li>But you know it's what's needed to hit the next level</li>
+            </ul>
+          </div>
+          <div class="fit-box">
+            <span class="fit-tag">Scenario 2</span>
+            <h3>Tried paid ads, and it's not working how you hoped</h3>
+            <ul class="bul">
+              <li>You know ads are the move, so you're giving it a go</li>
+              <li>You spent on ads or an agency with little to show for it</li>
+              <li>The offer isn't converting on paid because it's built for a warm audience</li>
+              <li>You don't know where things are going wrong</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="fit-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+      <div class="fit-to">
+        <p class="fit-label">To get this outcome</p>
+        <div class="fit-box win">
+          <span class="fit-tag">The outcome</span>
+          <h3>A paid funnel that sells your offer every day</h3>
+            <ul class="bul">
+              <li>5x+ ROAS on cold traffic within 30 days</li>
+              <li>The foundation is set for scale</li>
+              <li>You stop feeling slaved to the algorithm to get clients</li>
+              <li>Calls booked every day, whether you post or not</li>
+              <li>Revenue you can predict and scale</li>
+              <li>Controlled lead flow and quality</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROOF -->
+<section class="slide" id="proof" data-title="Proof">
+  <div class="wrap">
+    <h2 class="proof-head">These coaches are sitting at around <span class="mark">10–12x ROAS</span> with our setup</h2>
+    <div class="cs-stack">
+    <article class="cs">
+      <h3 class="cs-title">Bleeding Cash To 12x ROAS</h3>
+      <div class="cs-chips"><span>B2C coaching offer</span><span>Music niche</span><span>$4k–$8k ticket</span><span>100% cold traffic</span></div>
+      <div class="cs-panes">
+        <div class="cs-pane"><span class="cs-label">Organic</span><!-- Replace with <img src="proof/…png" alt=""> --><div class="cs-shot">Screenshot: organic month (DMs, calendar or Stripe)</div></div>
+        <div class="cs-pane"><span class="cs-label paid">Paid</span><div class="cs-shot"><div class="cs-stats"><div><span>Amount Won</span><b>$101.99K</b></div><div><span>ROAS</span><b class="huge">12</b></div></div></div></div>
+      </div>
+      <p class="cs-story">A B2C coaching offer in the music niche, selling at $4k–$8k, running on 100% cold traffic. We rebuilt the funnel, scripted the ads and VSL, and built the backend selling systems. In 30 days, $8,000 of ad spend turned into $97K in cash collected. A 12x return on every dollar.</p>
+      <div class="cs-eq">
+        <div class="cs-n dark"><b>$8,000</b><span>Ad spend</span></div>
+        <span class="cs-op">+</span>
+        <div class="cs-n dark"><b>30</b><span>Days</span></div>
+        <span class="cs-op arrow" aria-hidden="true">→</span>
+        <div class="cs-n out"><b>$97K</b><span>Cash collected</span></div>
+        <div class="cs-n win"><b>12x</b><span>ROAS</span></div>
+      </div>
+    </article>
+    <article class="cs">
+      <h3 class="cs-title">You Don't Have To Post More To Grow</h3>
+      
+      <div class="cs-panes">
+        <div class="cs-pane"><span class="cs-label">Organic</span><!-- Replace with <img src="proof/…png" alt=""> --><div class="cs-shot">Screenshot: organic results</div></div>
+        <div class="cs-pane"><span class="cs-label paid">Paid</span><!-- Replace with <img src="proof/…png" alt=""> --><div class="cs-shot">Screenshot: paid results</div></div>
+      </div>
+      <p class="cs-story">[Client] had hit the ceiling of their content. More posts weren't bringing more calls, and every slow week showed up in their revenue. We turned their best organic angles into paid ads and pointed them at a PIF offer built for cold traffic. Same offer, same coach. [$X] in, [$X] out, and a calendar that fills whether they post or not.</p>
+      <div class="cs-eq">
+        <div class="cs-n dark"><b>[$X]</b><span>Ad spend</span></div>
+        <span class="cs-op">+</span>
+        <div class="cs-n dark"><b>[X]</b><span>PIF sales</span></div>
+        <span class="cs-op arrow" aria-hidden="true">→</span>
+        <div class="cs-n out"><b>[$X]</b><span>Cash collected</span></div>
+        <div class="cs-n win"><b>[X]x</b><span>ROAS</span></div>
+      </div>
+    </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MILESTONES -->
+<section class="slide" id="milestones" data-title="Milestones">
+  <div class="wrap">
+    <div class="eyebrow">Your milestones</div>
+    <h2 class="h-lg">What Does Your First 30 Days Actually Look Like?</h2>
+    <div class="roas-card">
+      <div class="chart-scroll"><div data-roas></div></div>
+      <p class="chart-note">Illustrative path based on what our clients have done. Results vary with your offer, ad spend and sales process.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 01 -->
+<section class="slide" id="phase-1" data-title="Phase 1">
+  <div class="wrap phase">
+    <div>
+      <div class="eyebrow">Phase 01</div>
+      <h2 class="h-lg">Today – Week 1</h2>
+      <div class="step">
+        <div class="step-label">Today</div>
+        <ul class="bul"><li>Onboarding call and full audit of your offer</li><li>Offer adapted to sell itself on cold traffic</li><li>DFY build begins</li></ul>
+      </div>
+      <div class="step">
+        <div class="step-label">Week 1</div>
+        <ul class="bul"><li>DFY setup complete</li><li>Ads live</li><li class="key">Calls being booked</li></ul>
+      </div>
+    </div>
+    <div class="phase-right">
+      <div class="roas-card phase-chart">
+        <div class="chart-scroll"><div data-roas data-range="0,1"></div></div>
+      </div>
+      <div class="dfy">
+        <div class="dfy-cols">
+          <div>
+            <h3>What's included in the DFY funnel build</h3>
+            <ul class="bul dfy-two"><li>Offer adaption to cold traffic</li><li>New VSL script</li><li>Main VSL page</li><li>Confirmation page + video script</li><li>20x first ad scripts</li><li>Email sequence</li><li>SMS blasts</li></ul>
+          </div>
+          <div>
+            <h3>What we do with you</h3>
+            <ul class="bul"><li>Help you set up your ad account</li><li>Show you how to post ads</li><li>Show you how to analyse performance + tracking</li><li>CRM setup (if needed)</li></ul>
+          </div>
+        </div>
+        <p class="dfy-own"><strong>You own everything!</strong> That's why we don't set up your ad account, but we can help you on call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 02 -->
+<section class="slide" id="phase-2" data-title="Phase 2">
+  <div class="wrap phase">
+    <div>
+      <div class="eyebrow">Phase 02</div>
+      <h2 class="h-lg">Week 1 – Week 2</h2>
+      <div class="step">
+        <div class="step-label">Week 2</div>
+        <ul class="bul"><li>Booking calls</li><li>Seeing the funnel flow</li><li class="key">Closing some deals</li></ul>
+      </div>
+      <div class="step">
+        <div class="step-label">End of week 2</div>
+        <ul class="bul"><li>Full week of spend</li><li>First week of data reviewed together</li><li>Losing ads cut, winners kept running</li><li>Shift funnel / messaging if needed</li></ul>
+      </div>
+    </div>
+    <div class="roas-card phase-chart">
+      <div class="chart-scroll"><div data-roas data-range="1,2"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 03 -->
+<section class="slide" id="phase-3" data-title="Phase 3">
+  <div class="wrap phase">
+    <div>
+      <div class="eyebrow">Phase 03</div>
+      <h2 class="h-lg">Week 2 – Week 3</h2>
+      <div class="step">
+        <div class="step-label">Week 3</div>
+        <ul class="bul"><li>Few changes being made if necessary</li><li>Finding our winning messaging angle</li><li>Budget moved onto the winning ads</li><li>New variations scripted from what is working</li></ul>
+      </div>
+      <div class="step">
+        <div class="step-label">End of week 3</div>
+        <ul class="bul"><li class="key">Double down on what's working</li></ul>
+      </div>
+    </div>
+    <div class="roas-card phase-chart">
+      <div class="chart-scroll"><div data-roas data-range="2,3"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 04 -->
+<section class="slide" id="phase-4" data-title="Phase 4">
+  <div class="wrap phase">
+    <div>
+      <div class="eyebrow">Phase 04</div>
+      <h2 class="h-lg">Week 3 – Week 4</h2>
+      <div class="step">
+        <div class="step-label">Week 4</div>
+        <ul class="bul"><li>Closing more prospects</li><li>Seeing ROAS increase</li><li>Doubling down on winning formats</li></ul>
+      </div>
+      <div class="step">
+        <div class="step-label">End of week 4</div>
+        <ul class="bul"><li class="key">A profitable 5x ROAS paid funnel</li><li>A system you own and understand, not something an agency runs and gives updates about</li><li>A plan for scaling ad spend from month two</li></ul>
+      </div>
+    </div>
+    <div class="roas-card phase-chart">
+      <div class="chart-scroll"><div data-roas data-range="3,4"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="slide" id="guarantee" data-title="Guarantee">
+  <div class="wrap gtee">
+    <div>
+      <div class="eyebrow">Our guarantee</div>
+      <h2 class="h-lg">What if it's not profitable, or doesn't work the way you're saying?</h2>
+      <p class="lede">We have built this system out for many clients, and most sit at around an 8–10x return in the most opposing niches you can think of. So I'd be surprised if this didn't work for you.</p>
+    </div>
+    <div class="gtee-card">
+      <div class="gtee-seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 5-5"/></svg></div>
+      <div class="gtee-tag">The 5x guarantee</div>
+      <p class="gtee-text">For that reason, if we don't hit a <strong>5x return in the first 30 days</strong>, we will keep working with you for free, at no extra cost, until we hit that milestone.</p>
+      <p class="gtee-fair">Fair?</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. CHECK-IN -->
+<section class="slide" id="check-in" data-title="Check-in">
+  <div class="wrap">
+    <div class="eyebrow">Before we continue</div>
+    <h2 class="h-xl">Can you see this working for your offer?</h2>
+    <p class="lede">Any questions before we continue?</p>
+  </div>
+</section>
+
+<!-- 11b. ONE MORE RESULT -->
+<section class="slide" id="result" data-title="Result">
+  <div class="wrap">
+    <article class="cs">
+      <h3 class="cs-title">Stop Letting The Algorithm Decide Your Income</h3>
+      
+      <div class="cs-panes">
+        <div class="cs-pane"><span class="cs-label">Organic</span><!-- Replace with <img src="proof/…png" alt=""> --><div class="cs-shot">Screenshot: organic results</div></div>
+        <div class="cs-pane"><span class="cs-label paid">Paid</span><!-- Replace with <img src="proof/…png" alt=""> --><div class="cs-shot">Screenshot: paid results</div></div>
+      </div>
+      <p class="cs-story">[Client] had great months and empty months, and no way of knowing which was coming. One post would go viral, the next ten wouldn't, and their revenue followed. We built a paid funnel that runs every day regardless of reach. Within 30 days they were booking [X] calls a week from ads alone, and the swings were gone.</p>
+      <div class="cs-eq">
+        <div class="cs-n dark"><b>[$X]</b><span>Ad spend</span></div>
+        <span class="cs-op">+</span>
+        <div class="cs-n dark"><b>[X]</b><span>Calls / week</span></div>
+        <span class="cs-op arrow" aria-hidden="true">→</span>
+        <div class="cs-n out"><b>[$X]</b><span>Cash collected</span></div>
+        <div class="cs-n win"><b>[X]x</b><span>ROAS</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 12. PRICING -->
+<section class="slide" id="investment" data-title="Investment">
+  <div class="wrap price-grid">
+    <div>
+      <div class="eyebrow">Tom runs this personally</div>
+      <h2 class="h-lg">Your investment.</h2>
+      <p class="lede">A handful of spots open at a time.</p>
+    </div>
+    <div class="card plan best">
+      <div class="top">
+        <span class="pill">5 spots per month</span>
+        <div class="opt"><span class="amt">$14,997</span><span class="small">paid in full</span></div>
+      </div>
+      <ul class="rows">
+        <li><span>Offer adaption to cold traffic</span><span class="yes">Included</span></li>
+        <li><span>New VSL script</span><span class="yes">Included</span></li>
+        <li><span>Main VSL page</span><span class="yes">Included</span></li>
+        <li><span>Confirmation page + video script</span><span class="yes">Included</span></li>
+        <li><span>20x first ad scripts</span><span class="yes">Included</span></li>
+        <li><span>Email sequence</span><span class="yes">Included</span></li>
+        <li><span>SMS blasts</span><span class="yes">Included</span></li>
+        <li><span>1-1 coaching</span><span class="yes">Included</span></li>
+        <li><span>Direct contact with Tom, 7 days a week</span><span class="yes">Included</span></li>
+        <li><span>7-day money-back guarantee</span><span class="yes">Included</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 13. CLOSE -->
+<section class="slide" id="enrol" data-title="Enrol">
+  <div class="wrap">
+    <div class="close-head">
+      <h2 class="h-xl">Enrol now.</h2>
+      <div class="close-price"><b>$14,997</b><span>paid in full</span></div>
+    </div>
+    <div class="roas-card">
+      <div class="chart-scroll"><div data-roas></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  /* ---------- 30-day ROAS chart ---------- */
+  var RW = 1200, RH = 620, RL = 120, RR = 1070, RT = 50, RB = 430, RMAX = 5;
+  var WEEKS = [
+    { tag: 'TODAY', lines: ['Onboarding', '& Audit'] },
+    { tag: 'WEEK 1', lines: ['DFY Setup Complete,', 'Ads Live'] },
+    { tag: 'WEEK 2', lines: ['Performance Review', '& Iteration'] },
+    { tag: 'WEEK 3', lines: ['Double Down'] },
+    { tag: 'WEEK 4', lines: ['A Profitable 5x', 'ROAS Paid Funnel'] }
+  ];
+  function rf(t) { return RMAX * Math.pow(t, 2.2); }        // t runs 0..1 across the 4 weeks
+  function rx(t) { return RL + (RR - RL) * t; }
+  function ry(v) { return RB - (RB - RT) * v / RMAX; }
+  function buildRoas(el, idx) {
+    var rg = el.dataset.range ? el.dataset.range.split(',').map(Number) : null;
+    var t0 = rg ? rg[0] / 4 : 0, t1 = rg ? rg[1] / 4 : 1;
+    var id = 'rg' + idx, s = '<svg viewBox="0 0 ' + RW + ' ' + RH + '" role="img" aria-label="Illustrative ROAS climbing from 0 to 5x over the first 4 weeks">';
+    s += '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B4FE3" stop-opacity="0.34"/><stop offset="1" stop-color="#0B4FE3" stop-opacity="0"/></linearGradient></defs>';
+    s += '<text class="r-axis" x="' + (RL - 70) + '" y="' + (RT - 22) + '">ROAS</text>';
+    for (var v = 0; v <= RMAX; v++) {
+      s += '<line class="' + (v ? 'r-grid' : 'r-base') + '" x1="' + (RL - 20) + '" x2="' + (RR + 20) + '" y1="' + ry(v) + '" y2="' + ry(v) + '"/>';
+      s += '<text class="r-tick" x="' + (RL - 34) + '" y="' + (ry(v) + 6) + '" text-anchor="end">' + (v ? v + 'x' : '0') + '</text>';
+    }
+    function seg(a, b) { var p = ''; for (var t = a; t <= b + 0.0001; t += 0.01) p += (p ? 'L' : 'M') + rx(t).toFixed(1) + ' ' + ry(rf(t)).toFixed(1); return p; }
+    var d = seg(t0, t1);
+    if (rg) s += '<rect class="r-band" x="' + rx(t0) + '" y="' + RT + '" width="' + (rx(t1) - rx(t0)) + '" height="' + (RB - RT) + '"/>';
+    s += '<path d="' + d + 'L' + rx(t1) + ' ' + RB + 'L' + rx(t0) + ' ' + RB + 'Z" fill="url(#' + id + ')"/>';
+    function out(i) { return rg && (i < rg[0] || i > rg[1]); }
+    WEEKS.forEach(function (w, i) {
+      var t = i / 4, x = rx(t), y = ry(rf(t));
+      s += '<g' + (out(i) ? ' class="dim"' : '') + '>';
+      if (i) s += '<line class="r-drop" x1="' + x + '" x2="' + x + '" y1="' + (y + 12) + '" y2="' + (RB + 20) + '"/>';
+      s += '<text class="r-week" x="' + x + '" y="' + (RB + 62) + '" text-anchor="middle">' + w.tag + '</text>';
+      w.lines.forEach(function (ln, j) {
+        s += '<text class="r-title" x="' + x + '" y="' + (RB + 96 + j * 28) + '" text-anchor="middle">' + ln.replace('&', '&amp;') + '</text>';
+      });
+      s += '</g>';
+    });
+    if (rg) s += '<path class="c-line ghost" d="' + seg(0, 1) + '"/>';
+    s += '<path class="c-line" d="' + d + '" style="stroke-width:5"/>';
+    WEEKS.forEach(function (w, i) {
+      if (out(i)) return;
+      var t = i / 4, x = rx(t), y = ry(rf(t));
+      if (i === 4) s += '<circle class="r-halo" cx="' + x + '" cy="' + y + '" r="28"/>';
+      s += '<circle class="r-dot" cx="' + x + '" cy="' + y + '" r="' + (i === 4 ? 14 : 10) + '"/>';
+    });
+    el.innerHTML = s + '</svg>';
+  }
+  document.querySelectorAll('[data-roas]').forEach(buildRoas);
+
+  // Replay the line draw as each chart scrolls in (the line is fully drawn at rest).
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('draw'); io.unobserve(e.target); }
+      });
+    });
+    document.querySelectorAll('.roas-card').forEach(function (c) { io.observe(c); });
+  }
+
+  /* ---------- Slide nav: side dots + arrow keys ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.querySelector('.dots');
+  slides.forEach(function (sl) {
+    var a = document.createElement('a');
+    a.href = '#' + sl.id;
+    a.setAttribute('aria-label', sl.dataset.title);
+    a.title = sl.dataset.title;
+    dots.appendChild(a);
+  });
+  var current = 0;
+  function mark(i) {
+    current = i;
+    dots.querySelectorAll('a').forEach(function (a, j) { a.classList.toggle('on', j === i); });
+  }
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) mark(slides.indexOf(e.target)); });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    slides.forEach(function (sl) { so.observe(sl); });
+  }
+  mark(0);
+
+  /* ---------- Paging: wheel, keys and arrows move one full slide ---------- */
+  var headerH = document.querySelector('.topbar').offsetHeight;
+  function topOf(sl) { return sl.getBoundingClientRect().top + window.scrollY - headerH; }
+  function viewH() { return window.innerHeight - headerH; }
+  function slideAt() {
+    var y = window.scrollY + 5, idx = 0;
+    slides.forEach(function (sl, i) { if (topOf(sl) <= y) idx = i; });
+    return idx;
+  }
+  var busy = false;
+  function go(dir) {
+    if (busy) return;
+    var i = slideAt(), sl = slides[i], y = window.scrollY, target = null;
+    var top = topOf(sl), bottom = top + sl.offsetHeight;
+    if (dir > 0) {
+      // A slide taller than the screen is stepped through before moving on.
+      if (bottom > y + viewH() + 4) target = Math.min(y + viewH(), bottom - viewH());
+      else if (i < slides.length - 1) target = topOf(slides[i + 1]);
+    } else {
+      if (y > top + 4) target = Math.max(top, y - viewH());
+      else if (i > 0) { var p = slides[i - 1]; target = Math.max(topOf(p), topOf(p) + p.offsetHeight - viewH()); }
+    }
+    if (target === null) return;
+    busy = true;
+    window.scrollTo({ top: target, behavior: 'smooth' });
+    setTimeout(function () { busy = false; }, 800);
+  }
+
+  // Trackpads keep firing inertia events after a swipe; a new page turn needs a short pause in the wheel stream.
+  var lastWheel = 0;
+  window.addEventListener('wheel', function (e) {
+    if (e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+    if (e.target.closest('.chart-scroll')) { if (Math.abs(e.deltaX) > 0) return; }
+    e.preventDefault();
+    var now = Date.now(), gap = now - lastWheel;
+    lastWheel = now;
+    if (gap < 200 || busy || Math.abs(e.deltaY) < 4) return;
+    go(e.deltaY > 0 ? 1 : -1);
+  }, { passive: false });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest('input, textarea')) return;
+    var k = e.key;
+    if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); go(1); }
+    else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); go(-1); }
+  });
+
+  var up = document.getElementById('pageUp'), down = document.getElementById('pageDown');
+  up.addEventListener('click', function () { go(-1); });
+  down.addEventListener('click', function () { go(1); });
+  function syncArrows() {
+    up.disabled = window.scrollY < 5;
+    down.disabled = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5;
+  }
+  window.addEventListener('scroll', syncArrows, { passive: true });
+  syncArrows();
+})();
+</script>
+</body>
+</html>
