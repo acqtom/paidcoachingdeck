@@ -347,6 +347,9 @@ p { margin: 0; }
 .rows { list-style: none; padding: 0; margin: 0; }
 .rows li { display: flex; justify-content: space-between; gap: 16px; padding: 15px 28px; border-top: 1px solid var(--line); font-size: 15px; }
 .rows li span:last-child { flex: none; display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.rows li.perk { background: var(--blue-soft); color: var(--blue); font-weight: 700; border-top-color: var(--blue-pale); }
+.rows li.perk span:last-child { color: var(--blue); font-weight: 800; }
+.rows li.perk + li { border-top-color: var(--blue-pale); }
 .rows .yes { color: var(--blue); font-weight: 600; }
 .rows .no { color: var(--faint); }
 
@@ -398,7 +401,7 @@ p { margin: 0; }
         <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Offer Translated For Cold Traffic</li>
         <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>VSL + Landing Page</li>
         <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pre-Call Warm-Up</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>20x Direct Offer Ads</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10x Direct Offer Ads</li>
         <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sales Process Rebuild</li>
         <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1-on-1 Coaching</li>
       </ul>
@@ -570,7 +573,7 @@ p { margin: 0; }
         <div class="dfy-cols">
           <div>
             <h3>What's included in the DFY funnel build</h3>
-            <ul class="bul dfy-two"><li>Offer translation for cold traffic</li><li>New VSL script</li><li>VSL landing page + application</li><li>Confirmation page + video script</li><li>20x Direct Offer ad scripts</li><li>Pre-call warm-up email sequence</li><li>SMS blasts</li></ul>
+            <ul class="bul dfy-two"><li>Offer translation for cold traffic</li><li>New VSL script</li><li>VSL landing page + application</li><li>Confirmation page + video script</li><li>10x Direct Offer ad scripts</li><li>Pre-call warm-up email sequence</li><li>SMS blasts</li></ul>
           </div>
           <div>
             <h3>What we do with you</h3>
@@ -686,16 +689,17 @@ p { margin: 0; }
         <div class="opt"><span class="amt">$14,997</span><span class="small">paid in full</span></div>
       </div>
       <ul class="rows">
+        <li class="perk"><span>Pay in full = $3K ad spend on us</span><span class="yes">Bonus</span></li>
         <li><span>Offer translation for cold traffic</span><span class="yes">Included</span></li>
         <li><span>New VSL script</span><span class="yes">Included</span></li>
         <li><span>VSL landing page + application</span><span class="yes">Included</span></li>
         <li><span>Confirmation page + video script</span><span class="yes">Included</span></li>
-        <li><span>20x Direct Offer ad scripts</span><span class="yes">Included</span></li>
+        <li><span>10x Direct Offer ad scripts</span><span class="yes">Included</span></li>
         <li><span>Pre-call warm-up email sequence</span><span class="yes">Included</span></li>
         <li><span>SMS blasts</span><span class="yes">Included</span></li>
         <li><span>1-1 coaching</span><span class="yes">Included</span></li>
         <li><span>Direct contact with Tom &amp; Derek, 7 days a week</span><span class="yes">Included</span></li>
-        <li><span>7-day money-back guarantee</span><span class="yes">Included</span></li>
+        <li class="perk"><span>Don't ROI? We'll keep working until it does</span><span class="yes">Guarantee</span></li>
       </ul>
     </div>
   </div>
