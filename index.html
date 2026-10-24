@@ -375,6 +375,56 @@ p { margin: 0; }
 .pager button:hover { background: var(--blue-deep); }
 .pager button:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
 .pager svg { width: 22px; height: 22px; }
+/* ---------- v3 additions ---------- */
+#investment .rows li { padding-block: 11px; }
+#investment .plan .top { padding-block: 22px; }
+.hero-next { margin-top: 28px; font: 700 clamp(18px, 1.6vw, 22px)/1.3 var(--f-display); color: var(--blue); }
+.cs-cap { position: absolute; left: 12px; bottom: 10px; z-index: 1; font-size: 12px; color: rgba(255, 255, 255, 0.7); }
+.fitc { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 24px; align-items: stretch; margin-top: 36px; }
+@media (max-width: 1000px) { .fitc { grid-template-columns: 1fr; } .fitc .fit-arrow { justify-self: center; transform: rotate(90deg); margin-top: 0; } }
+.fit-box.no .fit-tag { background: #F1EEE7; color: var(--muted); }
+.xl { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.xl li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.4; }
+.xl .tick, .xl .cross { margin-top: 1px; }
+.cross { flex: none; width: 22px; height: 22px; border-radius: 50%; background: #EDEAE3; color: var(--muted); display: grid; place-items: center; }
+.cross svg { width: 11px; height: 11px; }
+.fit-box.no .xl li { color: var(--muted); }
+.fit-box.win .xl li { color: #fff; }
+.fit-box.win .tick { background: #fff; }
+.fit-box.win .tick path { stroke: var(--blue); }
+.fit-close { margin-top: 28px; font: 700 clamp(19px, 1.7vw, 24px)/1.35 var(--f-display); letter-spacing: -0.01em; max-width: 52ch; }
+.phase-when { display: inline-block; vertical-align: middle; margin-left: 10px; font: 600 13px/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); background: var(--blue-soft); padding: 8px 12px; border-radius: 999px; }
+.step-text { color: var(--muted); font-size: 17px; max-width: 54ch; }
+.step-text + .step-text { margin-top: 8px; }
+.step-text strong { color: var(--ink); }
+.step-text.lead { margin-top: 22px; color: var(--ink); font-weight: 600; }
+.key-step .step-text { color: var(--ink); font-weight: 700; }
+.dfy-cols.one { grid-template-columns: 1fr; }
+.founding { margin-top: 28px; padding: 20px 22px; border-radius: 14px; background: var(--blue-soft); border: 1px solid var(--blue-pale); }
+.founding .pill { margin-bottom: 10px; }
+.founding p { color: var(--blue); font-size: 17px; }
+.founding strong { font-weight: 800; }
+.price-main { row-gap: 8px; }
+.was-sm { flex-basis: 100%; font: 700 22px/1 var(--f-display); text-decoration: line-through; opacity: 0.6; }
+.small.full { flex-basis: 100%; }
+.split { display: grid; gap: 6px; }
+.split-label { text-transform: uppercase; letter-spacing: 0.12em; font: 600 11px/1 var(--f-mono); margin-bottom: 4px; }
+.split-row { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+.split-row b { font: 800 20px/1.1 var(--f-display); color: #fff; }
+.split-row s { opacity: 0.6; margin-right: 4px; }
+.gtee .lede strong { color: var(--ink); }
+.gtee .lede + .lede { margin-top: 14px; }
+.gtee-terms { margin-top: 16px; font-size: 15px; color: rgba(255, 255, 255, 0.82); }
+#guarantee .gtee-fair { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; }
+.next { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 700px) { .next { grid-template-columns: 1fr; } }
+.next-step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+.next-step:first-child { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 0 24px 50px -24px rgba(11, 79, 227, 0.6); }
+.next-n { font: 600 12px/1 var(--f-mono); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
+.next-step h3 { margin-top: 12px; font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.sign { margin-top: 28px; font: 800 22px/1 var(--f-display); }
+.ps { margin-top: 14px; max-width: 70ch; color: var(--muted); font-size: 16px; }
+.ps strong { color: var(--ink); }
 </style>
 </head>
 <body data-deck="dfy">
@@ -395,16 +445,14 @@ p { margin: 0; }
 <section class="slide" id="hero" data-title="Intro">
   <div class="wrap hero">
     <div>
-      <span class="badge">High-Ticket Coaches And Consultants</span>
-      <h1>We'll Build Your Paid Ads Funnel From Scratch, Find Your Winning Ads, And Hand You A Profitable Campaign, <span class="blue">In 30 Days.</span></h1>
+      <span class="badge">Founding 5 Clients · November</span>
+      <h1>We're working with a handful of high-ticket coaches and consultants to build their <span class="blue">first profitable paid ads funnel</span> this November.</h1>
       <ul class="checks">
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Offer Translated For Cold Traffic</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>VSL + Landing Page</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pre-Call Warm-Up</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10x Direct Offer Ads</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sales Process Rebuild</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1-on-1 Coaching</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Book-A-Call Funnel</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pre-Call Warm-Up Assets</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Direct Offer Paid Ads</li>
       </ul>
+      <p class="hero-next">Here's what we're doing…</p>
     </div>
     <div class="photos">
       <div class="photo-frame">
@@ -421,80 +469,27 @@ p { margin: 0; }
 <section class="slide" id="mission" data-title="The mission">
   <div class="wrap">
     <div class="eyebrow">The mission</div>
-    <h2 class="h-xl">Over the next 30 days, we're working toward one thing.</h2>
+    <h2 class="h-xl">Over your 30-Day Sprint, we're working toward one thing.</h2>
     <div class="mission-row">
       <div>
         <div class="target">
           <div class="label">The target</div>
-          <div class="big">5x ROAS on cold traffic</div>
-          <div class="sub">From qualified leads who can pay in full, not organic luck</div>
+          <div class="big">5x ROAS</div>
+          <div class="sub">From leads who go through the paid ads funnel we build you</div>
         </div>
-        <p class="after">You booking calls daily, whether or not you're posting.</p>
       </div>
       <ul class="mission-list">
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Predictable lead flow, in your control</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Qualified leads who can pay in full</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Educated on your mechanism before the call</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pre-call warm-up that keeps show rates high</li>
-        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>$1 in, $5+ out</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A steady flow of new leads</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A calendar full of qualified calls</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sales from cold traffic every month</li>
+        <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>$1 in. $5+ out.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- 3. WHO THIS IS FOR -->
-<section class="slide" id="built-for" data-title="Who this is for">
-  <div class="wrap">
-    <div class="eyebrow">Before we go further</div>
-    <h2 class="h-xl">Who this is for</h2>
-    <div class="fit">
-      <div class="fit-from">
-        <p class="fit-label">We work with 2 types of coaches</p>
-        <div class="fit-pair">
-          <div class="fit-box">
-            <span class="fit-tag">No paid funnel</span>
-            <h3>Selling well on organic, but it's a rollercoaster and you can't scale</h3>
-            <ul class="bul">
-              <li>Clients come through content, DMs and referrals</li>
-              <li>Fully booked one month, empty the next when the algorithm shifts</li>
-              <li>You know paid ads are how the big coaches scale</li>
-              <li>But you don't know how to turn your offer into ads, a VSL and a funnel that converts cold traffic</li>
-            </ul>
-          </div>
-          <div class="fit-box">
-            <span class="fit-tag">Paid funnel, not working</span>
-            <h3>Tried paid ads, and it's not working how you hoped</h3>
-            <ul class="bul">
-              <li>Leads came in, but they couldn't afford you or never showed</li>
-              <li>You spent on ads or an agency without a profitable return</li>
-              <li>Your closers hit objections they never heard from organic leads</li>
-              <li>You don't know where the funnel is leaking</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="fit-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-      <div class="fit-to">
-        <p class="fit-label">To get this outcome</p>
-        <div class="fit-box win">
-          <span class="fit-tag">The outcome</span>
-          <h3>A paid funnel that sells your offer every day</h3>
-            <ul class="bul">
-              <li>5x+ ROAS on cold traffic within 30 days</li>
-              <li>Qualified leads who can pay in full</li>
-              <li>Calls booked every day, whether you post or not</li>
-              <li>Leads who show up educated on your mechanism</li>
-              <li>Revenue you can predict and scale</li>
-              <li>A business that runs on a system, not luck</li>
-            </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 3. PROOF -->
-<section class="slide" id="proof" data-title="Client results">
+<section class="slide" id="proof" data-title="Case studies">
   <div class="wrap">
     <h2 class="proof-head">These coaches are sitting at around <span class="mark">10x ROAS</span> with our setup</h2>
     <div class="cs-stack">
@@ -503,11 +498,11 @@ p { margin: 0; }
       <div class="cs-chips"><span>B2C coaching offer</span><span>Music production niche</span><span>$4K–$8K ticket</span><span>100% cold traffic</span></div>
       <div class="cs-panes">
         <div class="cs-pane"><span class="cs-label">Before</span><div class="cs-shot"><div class="cs-stats"><div><span>Amount Won</span><b>$6K</b></div><div><span>ROAS</span><b class="huge">1</b></div></div></div></div>
-        <div class="cs-pane"><span class="cs-label paid">After</span><div class="cs-shot"><div class="cs-stats"><div><span>Amount Won</span><b>$101.49K</b></div><div><span>ROAS</span><b class="huge">10</b></div></div></div></div>
+        <div class="cs-pane"><span class="cs-label paid">After</span><div class="cs-shot"><div class="cs-stats"><div><span>Amount Won</span><b>$101.49K</b></div><div><span>ROAS</span><b class="huge">10x</b></div></div></div></div>
       </div>
       <div class="cs-story">
         <p><strong>Before:</strong> A music production coach with a known name in his space. Getting calls wasn't the problem, getting the right people on them was. His average order value was around $500, and he was stuck at $6K–$10K a month.</p>
-        <p><strong>After:</strong> We rebuilt everything for buyers who could actually afford it: a new VSL, landing page, application, pre-call warm-up and Direct Offer ads. His average order value jumped from $500 to $4,000, and he broke $100K in 30 days on 100% cold traffic at a 10x ROAS.</p>
+        <p><strong>After:</strong> We rebuilt everything for buyers who could actually afford it: a new VSL, landing page, application, pre-call warm-up and Direct Offer ads. His average order value jumped from $500 to $4,000, and he broke $100K in a single month on 100% cold traffic at a 10x ROAS.</p>
       </div>
       <div class="cs-eq">
         <div class="cs-n dark"><b>$6K/mo</b><span>Before</span></div>
@@ -520,12 +515,12 @@ p { margin: 0; }
       <h3 class="cs-title">10x ROAS First 30 Days</h3>
       <div class="cs-chips"><span>B2C mentorship offer</span><span>Real estate niche</span><span>$8K–$12K ticket</span></div>
       <div class="cs-panes">
-        <div class="cs-pane dark"><span class="cs-label">Before</span><img class="shot" src="assets/proof/real-estate-before.png" alt="Organic YouTube funnel: $21K, 18 bookings, 31 opt-ins, 1,113 clicks"></div>
-        <div class="cs-pane dark"><span class="cs-label paid">After</span><img class="shot" src="assets/proof/real-estate-after.png" alt="Paid funnel: $40,000 cash collected, $3,483.62 ad spend, 9.47x Meta ROAS"></div>
+        <div class="cs-pane dark"><span class="cs-label">Before</span><span class="cs-cap">Organic YouTube funnel</span><img class="shot" src="assets/proof/real-estate-before.png" alt="Organic YouTube funnel: $21K, 18 bookings, 31 opt-ins, 1,113 clicks"></div>
+        <div class="cs-pane dark"><span class="cs-label paid">After</span><span class="cs-cap">Total cash collected, organic + paid</span><img class="shot" src="assets/proof/real-estate-after.png" alt="Paid funnel: $40,000 cash collected, $3,483.62 ad spend, 9.47x Meta ROAS"></div>
       </div>
       <div class="cs-story">
-        <p><strong>Before:</strong> A real estate mentor who had validated his first $21K on organic, but most of his calls were with people who wanted to network or pick his brain. Only a handful could afford an $8K–$12K program.</p>
-        <p><strong>After:</strong> We built his paid funnel from the ground up, with Direct Offer ads speaking to investors with capital ready to deploy. $3K in ad spend turned into $33K in month one, a 10x ROAS. Month two scaled to $49K at 8.6x, with his team closing nearly 40% of calls.</p>
+        <p><strong>Before:</strong> A real estate mentor who had validated his first $21K on organic, but most of his calls were with people who wanted to network or pick his brain. Only a handful could afford an $8K–$12K program, and he had no way to control who came through, or when.</p>
+        <p><strong>After:</strong> We built his paid funnel from the ground up, with Direct Offer ads speaking to investors with capital ready to deploy. $3K in ad spend turned into $33K in month one, a 10x ROAS, with his team closing nearly 40% of calls.</p>
       </div>
       <div class="cs-eq">
         <div class="cs-n dark"><b>$3K</b><span>Ad spend</span></div>
@@ -538,11 +533,33 @@ p { margin: 0; }
   </div>
 </section>
 
-<!-- 4. MILESTONES -->
-<section class="slide" id="milestones" data-title="Your first 30 days">
+<!-- WHO THIS IS FOR -->
+<section class="slide" id="built-for" data-title="Who this is for">
   <div class="wrap">
-    <div class="eyebrow">Your milestones</div>
-    <h2 class="h-lg">What Does Your First 30 Days Actually Look Like?</h2>
+    <div class="eyebrow">Who this is for</div>
+    <h2 class="h-lg">We can only handle 5 clients a month, so we're looking for the right fit.</h2>
+    <div class="fitc">
+      <div class="fit-box no">
+        <span class="fit-tag">Not a fit</span>
+        <h3>This won't work for you if you…</h3>
+        <ul class="xl"><li><span class="cross"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Only sell low-ticket (under $3K)</li><li><span class="cross"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Don't have a reliable closer taking your calls</li><li><span class="cross"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Have a banned or restricted Meta, Instagram, or ad account</li><li><span class="cross"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Just want ad scripts for a monthly retainer</li><li><span class="cross"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Cannot fulfill for new customers</li></ul>
+      </div>
+      <div class="fit-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+      <div class="fit-box win">
+        <span class="fit-tag">A great fit</span>
+        <h3>But if you…</h3>
+        <ul class="xl"><li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Already sell a high-ticket offer that works</li><li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Want better quality leads than organic usually brings in</li><li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tried paid ads before and didn't get the return you hoped for</li><li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Have a closer ready to take more calls</li><li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.2l2.6 2.6L10 3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Can deliver results to customers</li></ul>
+      </div>
+    </div>
+    <p class="fit-close">…then this could be the month your offer finally starts selling beyond your organic audience.</p>
+  </div>
+</section>
+
+<!-- 4. MILESTONES -->
+<section class="slide" id="milestones" data-title="The plan">
+  <div class="wrap">
+    <div class="eyebrow">The plan</div>
+    <h2 class="h-lg">Here's exactly how it works.</h2>
     <div class="roas-card">
       <div class="chart-scroll"><div data-roas></div></div>
       <p class="chart-note">Illustrative path based on what our clients have done. Results vary with your offer, ad spend and sales process.</p>
@@ -551,18 +568,22 @@ p { margin: 0; }
 </section>
 
 <!-- PHASE 01 -->
-<section class="slide" id="phase-1" data-title="Phase 1 · Today – Week 1">
+<section class="slide" id="phase-1" data-title="Phase 1 · Build">
   <div class="wrap phase">
     <div>
       <div class="eyebrow">Phase 01</div>
-      <h2 class="h-lg">Today – Week 1</h2>
+      <h2 class="h-lg">Build <span class="phase-when">Days 1–7</span></h2>
       <div class="step">
-        <div class="step-label">Today</div>
-        <ul class="bul"><li>Funnel audit and onboarding call</li><li>We audit your content, funnel, sales frameworks and call transcripts</li><li>Offer translated to sell on cold traffic</li><li>DFY build begins</li></ul>
+        <div class="step-label">Onboarding</div>
+        <p class="step-text">We start with an onboarding call, and get access to your sales call transcripts, content, and current funnel.</p>
       </div>
       <div class="step">
-        <div class="step-label">Day 7</div>
-        <ul class="bul"><li>Cold funnel set up complete</li><li>New ad scripts ready</li><li class="key">Ad account set up together, ready to launch</li></ul>
+        <div class="step-label">Within 48 hours</div>
+        <p class="step-text">You get your <strong>Offer Translation Report</strong>, which breaks down why your best buyers said yes, what stalled the ones who didn't, and how to communicate your offer to people who've never heard of you.</p><p class="step-text">This alone sharpens your sales calls and organic content immediately.</p>
+      </div>
+      <div class="step key-step">
+        <div class="step-label">By day 7</div>
+        <p class="step-text">Your entire funnel is scripted and ready to film.</p>
       </div>
     </div>
     <div class="phase-right">
@@ -570,35 +591,36 @@ p { margin: 0; }
         <div class="chart-scroll"><div data-roas data-range="0,1"></div></div>
       </div>
       <div class="dfy">
-        <div class="dfy-cols">
+        <div class="dfy-cols one">
           <div>
-            <h3>What's included in the DFY funnel build</h3>
-            <ul class="bul dfy-two"><li>Offer translation for cold traffic</li><li>New VSL script</li><li>VSL landing page + application</li><li>Confirmation page + video script</li><li>10x Direct Offer ad scripts</li><li>Pre-call warm-up email sequence</li><li>SMS blasts</li></ul>
-          </div>
-          <div>
-            <h3>What we do with you</h3>
-            <ul class="bul"><li>Help you set up your ad account</li><li>Show you how to post ads</li><li>Show you how to analyse performance + tracking</li><li>CRM setup (if needed)</li></ul>
+            <h3>Then we build everything around it</h3>
+            <ul class="bul dfy-two"><li>VSL script</li><li>Landing page + application</li><li>Confirmation page + video script</li><li>Pre-call warm-up emails + SMS</li><li>10x Direct Offer ad scripts</li></ul>
           </div>
         </div>
-        <p class="dfy-own"><strong>You own everything!</strong> That's why we don't set up your ad account, but we can help you on call.</p>
+        <p class="dfy-own"><strong>You own everything from day one.</strong> We set up your ad account together.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PHASE 02 -->
-<section class="slide" id="phase-2" data-title="Phase 2 · Week 1 – Week 2">
+<section class="slide" id="phase-2" data-title="Phase 2 · Film and launch">
   <div class="wrap phase">
     <div>
       <div class="eyebrow">Phase 02</div>
-      <h2 class="h-lg">Week 1 – Week 2</h2>
+      <h2 class="h-lg">Film and Launch <span class="phase-when">About 7 days</span></h2>
+      <p class="step-text lead">This is the only part that needs you on camera, and we make it as easy as possible.</p>
       <div class="step">
-        <div class="step-label">Day 14</div>
-        <ul class="bul"><li class="key">Ads live</li><li>Booking calls</li><li>Pre-call warm-up getting leads to show</li></ul>
+        <div class="step-label">You film</div>
+        <ul class="bul"><li>Your ad scripts</li><li>Filming direction</li><li>An editor SOP</li><li>We can do basic editing if needed</li></ul>
       </div>
       <div class="step">
-        <div class="step-label">End of week 2</div>
-        <ul class="bul"><li>First week of data reviewed together</li><li>Losing ads cut, winners kept running</li><li>Shift funnel / messaging if needed</li></ul>
+        <div class="step-label">Meanwhile, we</div>
+        <ul class="bul"><li>Set up tracking</li><li>Warm up the ad account</li><li>Draft your campaigns, so the moment your videos are done, everything goes live</li></ul>
+      </div>
+      <div class="step key-step">
+        <div class="step-label">Ads go live</div>
+        <p class="step-text">This is where your 30-Day Sprint begins.</p>
       </div>
     </div>
     <div class="roas-card phase-chart">
@@ -608,60 +630,30 @@ p { margin: 0; }
 </section>
 
 <!-- PHASE 03 -->
-<section class="slide" id="phase-3" data-title="Phase 3 · Week 2 – Week 3">
+<section class="slide" id="phase-3" data-title="Phase 3 · The 30-Day Sprint">
   <div class="wrap phase">
     <div>
       <div class="eyebrow">Phase 03</div>
-      <h2 class="h-lg">Week 2 – Week 3</h2>
+      <h2 class="h-lg">The 30-Day Sprint</h2>
       <div class="step">
-        <div class="step-label">Day 21</div>
-        <ul class="bul"><li class="key">Closes begin</li><li>Finding our winning messaging angle</li><li>Budget moved onto the winning ads</li><li>New variations scripted from what is working</li></ul>
+        <div class="step-label">Days 1–7</div>
+        <p class="step-text">Leads start coming in. You'll see who's responding, and we sharpen the messaging around them.</p>
       </div>
       <div class="step">
-        <div class="step-label">End of week 3</div>
-        <ul class="bul"><li>Double down on winning ads</li></ul>
-      </div>
-    </div>
-    <div class="roas-card phase-chart">
-      <div class="chart-scroll"><div data-roas data-range="2,3"></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PHASE 04 -->
-<section class="slide" id="phase-4" data-title="Phase 4 · Week 3 – Week 4">
-  <div class="wrap phase">
-    <div>
-      <div class="eyebrow">Phase 04</div>
-      <h2 class="h-lg">Week 3 – Week 4</h2>
-      <div class="step">
-        <div class="step-label">Day 30</div>
-        <ul class="bul"><li>More closes</li><li>Seeing ROAS increase</li><li>Sales process tightened for cold leads</li></ul>
+        <div class="step-label">Days 7–14</div>
+        <p class="step-text">Better calls on your calendar. More qualified leads, and your first sales conversations from cold traffic.</p>
       </div>
       <div class="step">
-        <div class="step-label">End of week 4</div>
-        <ul class="bul"><li class="key">A profitable campaign, ready to scale</li><li>A system you own and understand, not something an agency runs and gives updates about</li><li>A plan for scaling ad spend from month two</li></ul>
+        <div class="step-label">Days 14–30</div>
+        <p class="step-text">Sales from cold traffic. Closes start coming in, and your campaign stabilizes around the winning ads.</p>
+      </div>
+      <div class="step">
+        <div class="step-label">By the end of your Sprint</div>
+        <ul class="bul"><li class="key">A profitable campaign, ready to scale</li><li>Your winning ads, plus a second batch ready for when the first ones fatigue</li><li>A profitable funnel and ad account you fully own</li><li>You'll know exactly which ads to put more budget behind and iterate on</li></ul>
       </div>
     </div>
     <div class="roas-card phase-chart">
-      <div class="chart-scroll"><div data-roas data-range="3,4"></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- GUARANTEE -->
-<section class="slide" id="guarantee" data-title="Our guarantee">
-  <div class="wrap gtee">
-    <div>
-      <div class="eyebrow">Our guarantee</div>
-      <h2 class="h-lg">What if it's not profitable, or doesn't work the way you're saying?</h2>
-      <p class="lede">We have built this system out for many clients, and most sit at around an 8–10x return in completely opposite niches. So I'd be surprised if this didn't work for you.</p>
-    </div>
-    <div class="gtee-card">
-      <div class="gtee-seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 5-5"/></svg></div>
-      <div class="gtee-tag">The payback guarantee</div>
-      <p class="gtee-text">For that reason, if you don't <strong>make your investment back</strong>, we will keep working with you for free, at no extra cost, until you do.</p>
-      <p class="gtee-fair">Fair?</p>
+      <div class="chart-scroll"><div data-roas data-range="2,4"></div></div>
     </div>
   </div>
 </section>
@@ -675,46 +667,85 @@ p { margin: 0; }
   </div>
 </section>
 
-<!-- 12. PRICING -->
+<!-- YOUR INVESTMENT -->
 <section class="slide" id="investment" data-title="Your investment">
   <div class="wrap price-grid">
     <div>
-      <div class="eyebrow">Tom &amp; Derek run this personally</div>
+      <div class="eyebrow">We run this entire operation ourselves</div>
       <h2 class="h-lg">Your investment.</h2>
-      <p class="lede">It's actually us working on your funnel, not a CSM or off-shore help. That's why we only take 5 clients a month.</p>
+      <p class="lede">It's actually us working on your funnel, not a CSM or offshore help. That's why we only take 5 clients a month.</p>
+      <div class="founding">
+        <span class="pill">Founding 5 clients</span>
+        <p><strong>Your ad spend is on us.</strong> Instant discount: –$3,000 off your total payment.</p>
+      </div>
     </div>
     <div class="card plan best">
       <div class="top">
-        <span class="pill">5 spots per month</span>
-        <div class="opt"><span class="amt">$14,997</span><span class="small">paid in full</span></div>
+        <span class="pill">Founding price</span>
+        <div class="opt price-main">
+          <span class="was-sm">$15,000</span>
+          <span class="amt">$12,000</span><span class="small">today</span>
+          <span class="small full">plus your $3,000 ad budget ($100/day), ready when ads go live around day 14</span>
+        </div>
+        <div class="opt split">
+          <span class="small full split-label">Or split it</span>
+          <div class="split-row"><span><s>$8,000</s> <b>$6,500</b></span><span>today</span></div>
+          <div class="split-row"><span><b>$3,000</b></span><span>ad budget, around day 14</span></div>
+          <div class="split-row"><span><s>$8,000</s> <b>$6,500</b></span><span>at day 30</span></div>
+        </div>
       </div>
       <ul class="rows">
-        <li class="perk"><span>Pay in full = $3K ad spend on us</span><span class="yes">Bonus</span></li>
-        <li><span>Offer translation for cold traffic</span><span class="yes">Included</span></li>
-        <li><span>New VSL script</span><span class="yes">Included</span></li>
-        <li><span>VSL landing page + application</span><span class="yes">Included</span></li>
+        <li class="perk"><span>Founding 5: your ad spend is on us</span><span class="yes">–$3,000</span></li>
+        <li><span>Offer Translation Report (48 hours)</span><span class="yes">Included</span></li>
+        <li><span>VSL script</span><span class="yes">Included</span></li>
+        <li><span>Landing page + application</span><span class="yes">Included</span></li>
         <li><span>Confirmation page + video script</span><span class="yes">Included</span></li>
+        <li><span>Pre-call warm-up emails + SMS</span><span class="yes">Included</span></li>
         <li><span>10x Direct Offer ad scripts</span><span class="yes">Included</span></li>
-        <li><span>Pre-call warm-up email sequence</span><span class="yes">Included</span></li>
-        <li><span>SMS blasts</span><span class="yes">Included</span></li>
-        <li><span>1-1 coaching</span><span class="yes">Included</span></li>
-        <li><span>Direct contact with Tom &amp; Derek, 7 days a week</span><span class="yes">Included</span></li>
-        <li class="perk"><span>Don't ROI? We'll keep working until it does</span><span class="yes">Guarantee</span></li>
+        <li><span>Campaign launch + 30 days of optimization</span><span class="yes">Included</span></li>
+        <li><span>10 Bonus Ads based on winning creatives</span><span class="yes">Included</span></li>
+        <li><span>Slack access, office hours Mon–Fri 8–5</span><span class="yes">Included</span></li>
+        <li class="perk"><span>Pays for itself, or we keep working until it does</span><span class="yes">Guarantee</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- 13. CLOSE -->
-<section class="slide" id="enrol" data-title="Enrol now">
+<!-- IT PAYS FOR ITSELF -->
+<section class="slide" id="guarantee" data-title="It pays for itself">
+  <div class="wrap gtee">
+    <div>
+      <div class="eyebrow">It pays for itself</div>
+      <h2 class="h-lg">We build your funnel to pay for itself within your 30-Day Sprint.</h2>
+      <p class="lede">That means your <strong>$3K in ad spend brings back at least $15K</strong> in sales through the funnel.</p>
+      <p class="lede">We've built this system for clients in completely opposite niches, and most sit around an 8–10x return. So we'd be surprised if it didn't work for you.</p>
+    </div>
+    <div class="gtee-card">
+      <div class="gtee-seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 5-5"/></svg></div>
+      <div class="gtee-tag">The payback guarantee</div>
+      <p class="gtee-text">But if it doesn't hit that target, <strong>we keep writing new ads and optimizing your campaigns until it does.</strong></p>
+      <p class="gtee-terms">As long as you film on time, take your calls, and keep your ads running for the full sprint.</p>
+      <p class="gtee-fair">So there's no real risk to getting started, is there?</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="slide" id="enrol" data-title="Next steps">
   <div class="wrap">
     <div class="close-head">
-      <h2 class="h-xl">Enrol now.</h2>
-      <div class="close-price"><b>$14,997</b><span>paid in full</span></div>
+      <div>
+        <div class="eyebrow">Next steps</div>
+        <h2 class="h-xl">Let's get started.</h2>
+      </div>
+      <div class="close-price"><b>$12,000</b><span>today</span></div>
     </div>
-    <div class="roas-card">
-      <div class="chart-scroll"><div data-roas></div></div>
+    <div class="next">
+      <div class="next-step"><span class="next-n">Step 1</span><h3>Lock in one of the 5 founding spots.</h3></div>
+      <div class="next-step"><span class="next-n">Step 2</span><h3>We schedule our onboarding.</h3></div>
     </div>
+    <p class="sign">— Tom &amp; Derek</p>
+    <p class="ps"><strong>P.S.</strong> The moment we get onboarding access, we start on your Offer Translation Report. Within 48 hours, you'll know exactly what's making your best buyers say yes, and you can put it to work in your organic funnel before your ads even go live.</p>
   </div>
 </section>
 
@@ -725,19 +756,19 @@ p { margin: 0; }
   /* ---------- 30-day ROAS chart ---------- */
   var RW = 1200, RH = 620, RL = 120, RR = 1070, RT = 50, RB = 430, RMAX = 5;
   var WEEKS = [
-    { tag: 'TODAY', lines: ['Funnel Audit', '& Onboarding'] },
-    { tag: 'DAY 7', lines: ['Cold Funnel Set Up', 'Complete, New Ad', 'Scripts Ready'] },
-    { tag: 'DAY 14', lines: ['Ads Live'] },
-    { tag: 'DAY 21', lines: ['Closes Begin,', 'Double Down On', 'Winning Ads'] },
-    { tag: 'DAY 30', lines: ['More Closes,', 'Profitable Campaign', 'Ready To Scale'] }
+    { tag: 'DAY 1', lines: ['Onboarding Call'] },
+    { tag: 'DAY 7', lines: ['Funnel Scripted,', 'Ready To Film'] },
+    { tag: 'ADS LIVE', lines: ['30-Day Sprint', 'Begins'] },
+    { tag: 'SPRINT DAY 14', lines: ['Better Calls, First', 'Cold Traffic Sales'] },
+    { tag: 'SPRINT DAY 30', lines: ['Profitable Campaign,', 'Ready To Scale'] }
   ];
-  function rf(t) { return RMAX * Math.pow(t, 2.6); }        // t runs 0..1 across the 4 weeks
+  function rf(t) { return t <= 0.5 ? 0 : RMAX * Math.pow((t - 0.5) / 0.5, 1.7); }   // flat through build + launch, then the sprint
   function rx(t) { return RL + (RR - RL) * t; }
   function ry(v) { return RB - (RB - RT) * v / RMAX; }
   function buildRoas(el, idx) {
     var rg = el.dataset.range ? el.dataset.range.split(',').map(Number) : null;
     var t0 = rg ? rg[0] / 4 : 0, t1 = rg ? rg[1] / 4 : 1;
-    var id = 'rg' + idx, s = '<svg viewBox="0 0 ' + RW + ' ' + RH + '" role="img" aria-label="Illustrative ROAS climbing from 0 to 5x over the first 30 days">';
+    var id = 'rg' + idx, s = '<svg viewBox="0 0 ' + RW + ' ' + RH + '" role="img" aria-label="Illustrative ROAS: flat through build and launch, then climbing to 5x over the 30-Day Sprint">';
     s += '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B4FE3" stop-opacity="0.34"/><stop offset="1" stop-color="#0B4FE3" stop-opacity="0"/></linearGradient></defs>';
     s += '<text class="r-axis" x="' + (RL - 70) + '" y="' + (RT - 22) + '">ROAS</text>';
     for (var v = 0; v <= RMAX; v++) {
